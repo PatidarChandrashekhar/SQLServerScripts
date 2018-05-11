@@ -118,5 +118,41 @@ SELECT Emp.Empid,
    CROSS JOIN tblJoinsDepartment dept
 
 
+--LEFT JOIN EXCLUDING INNER JOIN
+--This query will return all of the records in the left table (Table_A) that do not match any records in the right table (Table_B). This join is written as follows:
+SELECT Emp.Empid, 
+       Emp.EmpFirstName, 
+    Emp.EmpLastName, 
+    Dept.DepartmentName
+  FROM tblJoinstblJoinsEmployee Emp 
+     LEFT OUTER JOIN tblJoinsDepartment dept 
+     ON Emp.Departmentid=Dept.Departmentid
+	 WHERE Dept.Departmentid IS NULL
+
+
+--RIGHT JOIN EXCLUDING INNER JOIN
+--This query will return all of the records in the right table (Table_B) that do not match any records in the left table (Table_A). This join is written as follows:
+
+SELECT Dept.DepartmentName, 
+       Emp.Empid, Emp.EmpFirstName, 
+    Emp.EmpLastName 
+  FROM tblJoinstblJoinsEmployee Emp 
+    RIGHT OUTER JOIN tblJoinsDepartment dept 
+   ON Emp.Departmentid=Dept.Departmentid
+   WHERE Emp.Departmentid IS NULL
+
+
+--OUTER JOIN EXCLUDING INNER JOIN
+--This query will return all of the records in the left table (Table_A) and all of the records in the right table (Table_B) that do not match. I have yet to have a need for using this type of join, but all of the others, I use quite frequently. This join is written as follows:
+SELECT Emp.Empid, 
+       Emp.EmpFirstName, 
+    Emp.EmpLastName, 
+    Dept.DepartmentName 
+  FROM tblJoinstblJoinsEmployee Emp 
+     FULL OUTER JOIN tblJoinsDepartment dept 
+    ON Emp.Departmentid=Dept.Departmentid
+	WHERE Emp.Departmentid IS NULL OR Dept.Departmentid IS NULL
+
+
 select * from tblJoinstblJoinsEmployee
 select * from tblJoinsDepartment
